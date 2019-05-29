@@ -1,9 +1,16 @@
 {
   "scripts": {
+    "server": "http-server . -c-1 -p 43762",
     "demo": "ts-node hello.ts"
   },
   "devDependencies": {
+    "@types/http-proxy": "1.16.2",
+    "@types/node": "12.0.0",
     "ts-node": "7.0.1",
     "typescript": "3.2.2"
+  },
+  "dependencies": {
+    "http-proxy": "1.17.0",
+    "node-http-proxy": "0.2.3"
   }
 }
