@@ -1,9 +1,7 @@
-TypeScript Proxy Server Define Routes with "http-proxy-rules" Demo
+TypeScript Proxy Server Modify Response with "node-http-proxy" Demo
 ===================================================================
 
-使用`http-proxy-rules`可以自定义route规则
-
-注意：只能match url，不能指定具体的http method，比如'GET' 'POST'
+需要先用`http`创建一个server，里面调用由`http-proxy`创建的proxy server，再定义相应的修改规则
 
 ```
 npm install

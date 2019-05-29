@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "server": "http-server . -c-1 -p 37238",
+    "server": "http-server ./public -c-1 -p 39738",
     "demo": "ts-node hello.ts"
   },
   "devDependencies": {
