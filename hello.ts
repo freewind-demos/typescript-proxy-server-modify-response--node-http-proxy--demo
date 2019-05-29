@@ -1,7 +1,23 @@
 import httpProxy from 'http-proxy';
-import http from "http";
+import http, {IncomingHttpHeaders, ServerResponse} from "http";
 
 const proxy = httpProxy.createProxyServer({});
+
+function modifyBody(body: string): string {
+  return body.replace('[placeholder]', 'proxy server! (modified)');
+}
+
+function copyHeaders(headers: IncomingHttpHeaders, res: ServerResponse) {
+  for (const key in headers) {
+    let value = headers[key]!;
+    console.log(`### header: ${key}=${value}`)
+    res.setHeader(key, value)
+  }
+}
+
+function resetContentLength(res: ServerResponse, body: string) {
+  res.setHeader('content-length', body.length);
+}
 
 proxy.on('proxyRes', (proxyRes, req, res) => {
   let body = Buffer.from('');
@@ -9,8 +25,10 @@ proxy.on('proxyRes', (proxyRes, req, res) => {
     body = Buffer.concat([body, data]);
   });
   proxyRes.on('end', function () {
-    const modifiedBody = body.toString().replace('[placeholder]', 'proxy server! (modified)');
-    res.end(modifiedBody);
+    copyHeaders(proxyRes.headers, res);
+    const modifiedContent = modifyBody(body.toString());
+    resetContentLength(res, modifiedContent);
+    res.end(modifiedContent);
   });
 });
 
