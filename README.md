@@ -1,17 +1,13 @@
-TypeScript Https Proxy Server with Node "http-proxy" Demo
-==========================================================
+TypeScript Proxy Server Define Routes with "http-proxy-rules" Demo
+===================================================================
 
-TODO:
+使用`http-proxy-rules`可以自定义route规则
 
-使用http-proxy创建一个https的proxy server，目前还没搞定
-
-如何创建ssl所需要的密钥文件：
-
-```
-openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -nodes -subj '/CN=localhost' -days 365
-```
+注意：只能match url，不能指定具体的http method，比如'GET' 'POST'
 
 ```
 npm install
+npm run server
+
 npm run demo
 ```
